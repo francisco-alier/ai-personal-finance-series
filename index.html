@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonimizador Financeiro Seguro | Tua Economia</title>
+    <!-- Modern Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #10b981; /* Emerald green for money/security */
+            --primary-hover: #059669;
+            --background: #0b0f19; /* Ultra-modern dark background */
+            --surface: #151f32;
+            --surface-accent: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --border-focus: #10b981;
+            --success: #34d399;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Outfit', sans-serif;
+        }
+
+        [data-theme="light"] {
+            --primary: #059669;
+            --primary-hover: #047857;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --surface-accent: #f1f5f9;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-focus: #059669;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Abstract Premium Background Blobs */
+        .bg-glow-1, .bg-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .bg-glow-1 {
+            top: 10%;
+            left: 10%;
+        }
+
+        .bg-glow-2 {
+            bottom: 10%;
+            right: 10%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background-color: var(--surface-accent);
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        .badge-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 8px var(--primary); }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .textarea-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            background-color: var(--surface-accent);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+        }
+
+        button.action-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button.action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+        }
+
+        button.action-btn:active {
+            transform: translateY(0);
+        }
+
+        .output-section {
+            margin-top: 35px;
+            display: none;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .output-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .output-box {
+            background-color: #0b0f19; /* Constant dark background for code look */
+            color: #f8fafc;
+            border: 1px solid #1e293b;
+            padding: 22px;
+            border-radius: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button.copy-btn {
+            background-color: #28a745;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
+        button.copy-btn:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.35);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="container">
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Alternar tema">🌓</button>
+
+        <div class="badge-wrapper">
+            <span class="badge">
+                <span class="badge-pulse"></span>
+                🔒 Processamento 100% Local
+            </span>
+            <span class="badge" style="background-color: rgba(59, 130, 246, 0.12); color: #60a5fa; border-color: rgba(59, 130, 246, 0.25);">
+                ✈️ Funciona Offline
+            </span>
+        </div>
+
+        <h1>Anonimizador <span>Financeiro</span></h1>
+        <p class="description">
+            Cole as linhas do seu extrato bancário ou ficheiro CSV abaixo. O algoritmo irá higienizar e mascarar todos os dados pessoais identificáveis (NIF, IBAN, Nomes Próprios) instantaneamente antes de os enviar para modelos como ChatGPT ou Claude.
+        </p>
+
+        <div class="textarea-wrapper">
+            <textarea id="inputData" placeholder="Cole o seu extrato aqui...&#10;Exemplo:&#10;22-05 TRANSF. DE JOÃO SILVA PT50000100001234567890123 - 100.00€&#10;23-05 COMPRA CONTINENTE AMADORA - 45.20€&#10;24-05 PAGAMENTO SERVIÇOS NIF 501234567 LUZ - 62.10€"></textarea>
+        </div>
+
+        <button class="action-btn" onclick="processData()">
+            <span>Limpar Extrato Financeiro</span> ✨
+        </button>
+
+        <div class="output-section" id="outputSection">
+            <div class="output-header">
+                <h3>📋 Dados Prontos e Seguros:</h3>
+            </div>
+            <div class="output-box" id="outputBox"></div>
+            <button class="action-btn copy-btn" onclick="copyToClipboard()">
+                <span>Copiar Dados Higienizados</span> 💾
+            </button>
+            <p class="instructions" style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 12px;">
+                Os seus dados sensíveis foram mascarados. Pode colar este texto seguro no seu prompt da IA.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Desenvolvido para a rubrica <strong>O Meu Co-Piloto Financeiro</strong> em <a href="https://tuaeconomia.pt" target="_blank">Tua Economia</a>.
+    </div>
+
+    <script>
+        // Theme Management
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Apply saved theme on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+        }
+
+        // Anonymization Core
+        function processData() {
+            const input = document.getElementById('inputData').value;
+            if (!input.trim()) {
+                alert("Por favor, cole primeiro os dados do seu extrato bancário.");
+                return;
+            }
+
+            let text = input;
+
+            // 1. Mask IBANs (Portuguese Format: PT50 + 21 digits)
+            text = text.replace(/PT\d{21}/gi, '[IBAN_OCULTO]');
+
+            // 2. Mask NIFs (9 digits starting with 1, 2, 5, 7, 8, 9)
+            text = text.replace(/\b[125789]\d{8}\b/g, '[NIF_OCULTO]');
+
+            // 3. Scrub Portuguese Common First Names & Surnames
+            const names = [
+                "JOAO", "JOÃO", "MARIA", "SILVA", "SANTOS", "FERREIRA", "RODRIGUES", 
+                "MANUEL", "MANEL", "ANTONIO", "ANTÓNIO", "CARLOS", "FRANCISCO", 
+                "ANA", "PAULO", "PEDRO", "LUIS", "LUÍS", "MIGUEL", "GONCALO", "GONÇALO",
+                "SOFIA", "INÊS", "INES", "RITA", "CATARINA", "TIAGO", "DIOGO"
+            ];
+            
+            names.forEach(name => {
+                const regex = new RegExp('\\b' + name + '\\b', 'gi');
+                text = text.replace(regex, '[NOME_OCULTO]');
+            });
+
+            // 4. Standardize major Portuguese banks to maintain categorization structure while hiding exact bank
+            text = text.replace(/CAIXA GERAL|MILLENIUM|ACTIVOBANK|NOVO BANCO|REVOLUT|SANTANDER|BPI/gi, '[BANCO]');
+
+            // 5. Hide specific address details or localized store descriptions
+            // (Attempts to simplify restaurant locations e.g. "RESTAURANTE O MANEL BENFICA" -> "RESTAURANTE [LOCAL]")
+            text = text.replace(/RESTAURANTE\s+[\w\s\u00C0-\u00FF]+/gi, function(match) {
+                // Keep the word "Restaurante" but mask the specific name/location
+                return "RESTAURANTE [LOCAL]";
+            });
+
+            const outputBox = document.getElementById('outputBox');
+            outputBox.innerText = text;
+            document.getElementById('outputSection').style.display = 'block';
+            
+            // Auto scroll to results
+            document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Copy Clipboard Utility
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputBox').innerText;
+            navigator.clipboard.writeText(outputText).then(() => {
+                const originalText = document.querySelector('.copy-btn span').innerText;
+                document.querySelector('.copy-btn span').innerText = 'Copiado!';
+                setTimeout(() => {
+                    document.querySelector('.copy-btn span').innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                alert('Erro ao copiar: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>

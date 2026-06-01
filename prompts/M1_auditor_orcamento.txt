@@ -1,0 +1,13 @@
+Actua como um consultor financeiro familiar rigoroso e direto ao assunto, especialista em orçamentos domésticos. 
+Vou fornecer-te uma lista anonimizada das minhas transações mensais.
+
+Analisa estes dados e faz o seguinte:
+1. Categoriza todas as despesas em três grupos claros: Necessidades Essenciais, Desejos/Lazer e Poupança/Dívidas (seguindo a regra do orçamento 50/30/20).
+2. Calcula a percentagem exata que cada um destes três grupos representa no meu gasto total.
+3. Identifica "gastos formiga" (pequenas despesas recorrentes, subscrições duplicadas ou hábitos diários que parecem insignificantes mas que no final do mês drenam o orçamento).
+4. Dá-me 3 conselhos práticos e realistas sobre onde posso cortar no próximo mês para aumentar a minha taxa de poupança em 10%.
+
+Usa um tom informal, direto e sem jargão financeiro complexo. Fala de forma simples, como se estivesses a aconselhar um amigo.
+
+Aqui estão os meus dados anonimizados:
+[COLA AQUI OS TEUS DADOS LIMPOS DO ANONIMIZADOR]
