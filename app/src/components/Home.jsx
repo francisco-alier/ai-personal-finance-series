@@ -7,7 +7,7 @@ export default function Home({ onNavigate }) {
         <span className="hero-tag" style={{ fontSize: '0.8rem', letterSpacing: '0.05em' }}>Bem-vindo</span>
         <h1 className="page-title" style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>O Meu Co-Piloto Financeiro</h1>
         <p className="page-description" style={{ fontSize: '1rem', maxWidth: '550px', margin: '0 auto', lineHeight: '1.5' }}>
-          Uma iniciativa pessoal para ligar Inteligência Artificial à gestão inteligente e segura das tuas finanças domésticas.
+          Uma iniciativa pessoal para ligar Inteligência Artificial à gestão inteligente e segura das tuas finanças pessoais.
         </p>
       </div>
 
