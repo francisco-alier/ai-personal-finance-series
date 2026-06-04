@@ -53,7 +53,7 @@ export default function Home({ onNavigate }) {
         <h2 className="section-title" style={{ fontSize: '1.3rem', marginBottom: '0.75rem' }}>Segurança local e privada</h2>
         
         <p className="section-text" style={{ fontSize: '0.95rem', maxWidth: '500px', marginBottom: '2rem', lineHeight: '1.5', color: 'var(--text-secondary)' }}>
-          Protege a tua privacidade ao higienizar os teus extratos bancários localmente antes de os partilhares com qualquer Inteligência Artificial. Todos os processos ocorrem 100% no teu navegador de internet.
+          Protege a tua privacidade ao anonimizar os teus extratos bancários localmente antes de os partilhares com qualquer Inteligência Artificial. Todos os processos ocorrem 100% no teu navegador de internet.
         </p>
 
         <button 
