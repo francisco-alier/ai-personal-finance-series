@@ -35,28 +35,30 @@ Aqui está o segredo: esta ferramenta funciona através de **processamento 100% 
 
 O que significa isto em linguagem simples?
 * **Nenhum dado sai do teu dispositivo:** A ferramenta não envia informações para servidores externos, não tem bases de dados e não guarda nada. O teu extrato é limpo no teu próprio computador ou telemóvel.
-* **Funciona totalmente offline:** Podes carregar a página e fazer todo o processo sem ligação à rede. Nem precisas de te conectar à internet.
+* **Funciona offline após o carregamento:** Uma vez que a página esteja carregada no teu navegador, todo o processo de anonimização corre localmente no teu dispositivo sem necessitar de qualquer ligação ativa à internet.
 
 De facto, a melhor forma de confirmares a segurança é testá-la tu mesmo:
 
 #### O Teste de Segurança em 4 Passos:
 
-1. [**Acede à ferramenta**](https://francisco-alier.github.io/ai-personal-finance-series/).
-2. **Desliga a tua ligação à Internet** (desliga o Wi-Fi do computador ou ativa o 'Modo de Voo' no telemóvel).
+1. [**Acede à ferramenta**](https://francisco-alier.github.io/ai-personal-finance-series/) enquanto estás online para carregar a aplicação no teu navegador.
+2. **Desliga a tua ligação à Internet** (desliga o Wi-Fi do computador ou ativa o 'Modo de Voo' no telemóvel) — a página continuará totalmente funcional na memória do teu browser.
 3. **Cola as linhas do teu extrato** bancário na caixa de texto.
-4. **Clica em "Limpar Extrato Financeiro"**.
+4. **Clica em "Anonimizar Dados"** (ou "Anonymize Data" se estiver em inglês).
 
-Vais ver que a ferramenta funciona instantaneamente e apresenta o resultado na hora, mesmo estando completamente desligada da internet. 
+Vais ver que a ferramenta funciona instantaneamente e apresenta o resultado na hora, mesmo sem qualquer ligação à internet. Isto é a prova de que nenhum dado financeiro ou pessoal é enviado para servidores externos.
 
-O script corre localmente e tritura toda a informação sensível:
-* O teu **IBAN** é substituído por `[IBAN_OCULTO]`.
-* O teu **NIF** passa a `[NIF_OCULTO]`.
-* Os **nomes próprios** (João, Maria, Silva...) transformam-se em `[NOME_OCULTO]`.
-* Os nomes dos **bancos** mudam para `[BANCO]`.
+O script corre localmente e substitui toda a informação sensível:
+* O teu **IBAN** é substituído por `[IBAN_ANONIMIZADO]`.
+* O teu **NIF** passa a `[NIF_ANONIMIZADO]`.
+* Os **nomes próprios** (João, Maria, Silva...) transformam-se em `[NOME_ANONIMIZADO]`.
+* Os nomes dos **bancos** mudam para `[BANCO_ANONIMIZADO]`.
 
 Os nomes de grandes superfícies e marcas conhecidas (como Continente, Auchan, Pingo Doce, Worten, Galp ou Netflix) mantêm-se visíveis. Porquê? Porque a IA precisa de saber a natureza do gasto para fazer uma categorização correta. No entanto, qualquer rasto que te possa identificar a ti ou a contas específicas é totalmente anonimizado.
 
-Quando terminar, basta clicares em **"Copiar Dados Anonimizados"**, voltar a ligar a internet e avançar para o passo seguinte. Tens agora um extrato 100% anónimo e seguro para entregar à IA.
+Quando terminar, basta clicares em **"Copiar Resultado"** (ou "Copy Result"), voltar a ligar a internet e avançar para o passo seguinte. Tens agora um extrato 100% anónimo e seguro para entregar à IA.
+
+**Dica para melhores resultados (Formato Tabela):** No painel de resultados do anonimizador, podes optar por copiar os teus dados em formato de **Tabela** (usando a linguagem *Markdown*). Recomendamos que utilizes esta opção! Fornecer os dados estruturados numa tabela com colunas de `Data | Descrição | Valor` facilita o trabalho de leitura do modelo de IA, reduz drasticamente a probabilidade de erros matemáticos ("alucinações") e melhora a precisão global do diagnóstico financeiro.
 
 ---
 
@@ -125,6 +127,7 @@ O uso desta ferramenta e do guia associado é feito por tua inteira conta e risc
 *   **IBAN (Número de Conta Bancária) e NIF (Número de Identificação Fiscal):** Dados pessoais e financeiros identificativos que constam do teu extrato bancário e que necessitam de ser mascarados antes de partilhares o texto com a IA.
 *   **Alucinações (de IA):** O fenómeno em que os modelos de Inteligência Artificial cometem erros de forma convincente, como inventar ou categorizar incorretamente um gasto no extrato.
 *   **Regra 50/30/20:** Um método popular de gestão financeira que divide os teus rendimentos mensais em três categorias: 50% para necessidades essenciais, 30% para lazer (desejos) e 20% para poupança e investimentos.
+*   **Markdown:** Uma linguagem de marcação leve com sintaxe de formatação de texto simples. No contexto desta ferramenta, é utilizada para organizar as transações bancárias numa tabela limpa com colunas, o que facilita muito a leitura e interpretação por parte da IA.
 
 ---
 
