@@ -1,0 +1,10 @@
+04-06-2026 Transferência recebida de [NOME_OCULTO] NIF [NIF_OCULTO]
+IBAN de origem: [IBAN_OCULTO]
+Banco: [BANCO_OCULTO]
+Valor: +150.00 EUR
+03-06-2026 Pagamento de Serviços a [NOME_OCULTO] do [NOME_OCULTO]
+NIF da entidade: [NIF_OCULTO]
+Banco de destino: [BANCO_OCULTO]
+Valor: -45.20 EUR
+02-06-2026 Transferência para [BANCO_OCULTO] IBAN [IBAN_OCULTO]
+Valor: -200.00 EUR

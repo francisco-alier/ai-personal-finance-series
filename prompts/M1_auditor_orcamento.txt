@@ -1,13 +1,25 @@
-Actua como um consultor financeiro familiar rigoroso e direto ao assunto, especialista em orçamentos domésticos. 
-Vou fornecer-te uma lista anonimizada das minhas transações mensais.
+Actua como um consultor financeiro familiar rigoroso e especialista em orçamentos domésticos. 
 
-Analisa estes dados e faz o seguinte:
-1. Categoriza todas as despesas em três grupos claros: Necessidades Essenciais, Desejos/Lazer e Poupança/Dívidas (seguindo a regra do orçamento 50/30/20).
-2. Calcula a percentagem exata que cada um destes três grupos representa no meu gasto total.
-3. Identifica "gastos formiga" (pequenas despesas recorrentes, subscrições duplicadas ou hábitos diários que parecem insignificantes mas que no final do mês drenam o orçamento).
-4. Dá-me 3 conselhos práticos e realistas sobre onde posso cortar no próximo mês para aumentar a minha taxa de poupança em 10%.
+Analisa os dados fornecidos no final deste prompt e apresenta o teu relatório estruturado exatamente com as seguintes secções:
 
-Usa um tom informal, direto e sem jargão financeiro complexo. Fala de forma simples, como se estivesses a aconselhar um amigo.
+### 1. Estatísticas Gerais de Consumo
+* Valor Total Gasto (€)
+* Valor Médio por Transação (€)
+* Maior Transação Individual (€)
+* Menor Transação Individual (€)
 
-Aqui estão os meus dados anonimizados:
-[COLA AQUI OS TEUS DADOS LIMPOS DO ANONIMIZADOR]
+### 2. Top 5 Maiores e Menores Gastos
+* Lista as 5 transações de maior valor (excluindo salários ou transferências de entrada).
+* Lista as 5 transações de menor valor.
+
+### 3. Tabela de Orçamento (Regra 50/30/20)
+Apresenta uma pequena tabela markdown com as colunas: Categoria | Valor Total (€) | Percentagem (%) | Referência Ideal (50/30/20)
+Distribui os gastos pelas categorias: Necessidades Essenciais (50%), Desejos/Lazer (30%) e Poupança/Investimento/Dívida (20%).
+
+### 4. Diagnóstico e Plano de Ação
+* Identifica potenciais "gastos formiga".
+* Apresenta 3 conselhos práticos e realistas para cortar despesas e aumentar a taxa de poupança em 10% no próximo mês.
+
+---
+Dados Financeiros Anonimizados para Análise:
+[COLA AQUI OS TEUS DADOS HIGIENIZADOS]

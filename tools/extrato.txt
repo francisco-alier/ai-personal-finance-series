@@ -1,0 +1,10 @@
+04-06-2026 Transferência recebida de João Silva NIF 256849301
+IBAN de origem: PT50 0007 1234 5678 9012 3456 7
+Banco: Caixa Geral de Depósitos
+Valor: +150.00 EUR
+03-06-2026 Pagamento de Serviços a Maria do Carmo Costa
+NIF da entidade: 501234567
+Banco de destino: Santander Totta
+Valor: -45.20 EUR
+02-06-2026 Transferência para Novo Banco IBAN PT50000300001111222233334
+Valor: -200.00 EUR
