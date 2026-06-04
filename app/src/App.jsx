@@ -9,13 +9,25 @@ function App() {
     const saved = localStorage.getItem('theme');
     return saved || 'dark';
   });
+  const [lang, setLang] = useState(() => {
+    const saved = localStorage.getItem('lang');
+    return saved || 'pt';
+  });
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    localStorage.setItem('lang', lang);
+  }, [lang]);
+
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleLanguage = () => {
+    setLang(prev => (prev === 'pt' ? 'en' : 'pt'));
   };
 
   return (
@@ -41,30 +53,36 @@ function App() {
               onClick={() => setPage('home')}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              Início
+              {lang === 'pt' ? 'Início' : 'Home'}
             </button>
             <button 
               className={`nav-item ${page === 'm1' ? 'active' : ''}`}
               onClick={() => setPage('m1')}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              Anonimizador (Artigo 1)
+              {lang === 'pt' ? 'Anonimizador (Artigo 1)' : 'Anonymizer (Article 1)'}
             </button>
           </nav>
         </div>
 
         {/* Footer actions */}
         <div className="sidebar-footer">
+          {/* Language Toggle Button */}
+          <button className="theme-toggle-btn" onClick={toggleLanguage} style={{ marginBottom: '0.25rem' }}>
+            <span className="theme-toggle-icon">🌐</span>
+            <span>{lang === 'pt' ? 'English' : 'Português'}</span>
+          </button>
+
           <button className="theme-toggle-btn" onClick={toggleTheme}>
             {theme === 'dark' ? (
               <>
                 <span className="theme-toggle-icon">☀️</span>
-                <span>Modo Claro</span>
+                <span>{lang === 'pt' ? 'Modo Claro' : 'Light Mode'}</span>
               </>
             ) : (
               <>
                 <span className="theme-toggle-icon">🌙</span>
-                <span>Modo Escuro</span>
+                <span>{lang === 'pt' ? 'Modo Escuro' : 'Dark Mode'}</span>
               </>
             )}
           </button>
@@ -77,9 +95,9 @@ function App() {
       {/* Main Dashboard Content */}
       <main className="main-content">
         {page === 'home' ? (
-          <Home onNavigate={setPage} />
+          <Home lang={lang} onNavigate={setPage} />
         ) : (
-          <Anonymizer />
+          <Anonymizer lang={lang} />
         )}
       </main>
     </div>

@@ -1,13 +1,38 @@
 import React from 'react';
 
-export default function Home({ onNavigate }) {
+const t = {
+  pt: {
+    welcome: 'Bem-vindo',
+    title: 'O Meu Co-Piloto Financeiro',
+    desc: 'Uma iniciativa pessoal para ligar Inteligência Artificial à gestão inteligente e segura das tuas finanças domésticas.',
+    disclaimerTitle: 'Aviso de Responsabilidade (Utilização por Conta e Risco):',
+    disclaimerDesc: 'O uso desta ferramenta local é feito por tua inteira conta e risco. Não nos responsabilizamos por falhas de privacidade. Verifica sempre se todos os dados sensíveis (especialmente nomes próprios específicos e locais) foram totalmente limpos antes de partilhares o texto com qualquer IA externa.',
+    cardTitle: 'Segurança local e privada',
+    cardDesc: 'Protege a tua privacidade ao anonimizar os teus extratos bancários localmente antes de os partilhares com qualquer Inteligência Artificial. Todos os processos ocorrem 100% no teu navegador de internet.',
+    buttonText: 'Anonimizador de Extratos 🧹'
+  },
+  en: {
+    welcome: 'Welcome',
+    title: 'My Financial Co-Pilot',
+    desc: 'A personal initiative to connect Artificial Intelligence with the smart and safe management of your household finances.',
+    disclaimerTitle: 'Disclaimer (Use at Your Own Risk):',
+    disclaimerDesc: 'The use of this local tool is done at your own risk. We are not liable for any privacy issues. Always verify that all sensitive data (especially specific names and locations) are fully masked in the output before sharing the text with any external AI.',
+    cardTitle: 'Local and private security',
+    cardDesc: 'Protect your privacy by anonymizing your bank statements locally before sharing them with any Artificial Intelligence. All processes run 100% in your internet browser.',
+    buttonText: 'Statement Anonymizer 🧹'
+  }
+};
+
+export default function Home({ lang = 'pt', onNavigate }) {
+  const content = t[lang] || t.pt;
+
   return (
     <div className="page-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
       <div className="page-header" style={{ textAlign: 'center', borderBottom: 'none', paddingBottom: 0, marginBottom: '2rem' }}>
-        <span className="hero-tag" style={{ fontSize: '0.8rem', letterSpacing: '0.05em' }}>Bem-vindo</span>
-        <h1 className="page-title" style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>O Meu Co-Piloto Financeiro</h1>
+        <span className="hero-tag" style={{ fontSize: '0.8rem', letterSpacing: '0.05em' }}>{content.welcome}</span>
+        <h1 className="page-title" style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>{content.title}</h1>
         <p className="page-description" style={{ fontSize: '1rem', maxWidth: '550px', margin: '0 auto', lineHeight: '1.5' }}>
-          Uma iniciativa pessoal para ligar Inteligência Artificial à gestão inteligente e segura das tuas finanças pessoais.
+          {content.desc}
         </p>
       </div>
 
@@ -28,7 +53,7 @@ export default function Home({ onNavigate }) {
       }}>
         <span style={{ fontSize: '1.3rem', lineHeight: '1' }}>⚠️</span>
         <div>
-          <strong>Aviso de Responsabilidade (Utilização por Conta e Risco):</strong> O uso desta ferramenta local é feito por tua inteira conta e risco. Não nos responsabilizamos por falhas de privacidade. <strong>Verifica sempre</strong> se todos os dados sensíveis (especialmente nomes próprios específicos e locais) foram totalmente limpos antes de partilhares o texto com qualquer IA externa.
+          <strong>{content.disclaimerTitle}</strong> {content.disclaimerDesc}
         </div>
       </div>
 
@@ -50,10 +75,10 @@ export default function Home({ onNavigate }) {
           €
         </div>
         
-        <h2 className="section-title" style={{ fontSize: '1.3rem', marginBottom: '0.75rem' }}>Segurança local e privada</h2>
+        <h2 className="section-title" style={{ fontSize: '1.3rem', marginBottom: '0.75rem' }}>{content.cardTitle}</h2>
         
         <p className="section-text" style={{ fontSize: '0.95rem', maxWidth: '500px', marginBottom: '2rem', lineHeight: '1.5', color: 'var(--text-secondary)' }}>
-          Protege a tua privacidade ao anonimizar os teus extratos bancários localmente antes de os partilhares com qualquer Inteligência Artificial. Todos os processos ocorrem 100% no teu navegador de internet.
+          {content.cardDesc}
         </p>
 
         <button 
@@ -61,7 +86,7 @@ export default function Home({ onNavigate }) {
           onClick={() => onNavigate('m1')}
           style={{ padding: '0.85rem 2rem', fontSize: '1rem', borderRadius: '12px' }}
         >
-          Anonimizador de Extratos 🧹
+          {content.buttonText}
         </button>
       </div>
     </div>

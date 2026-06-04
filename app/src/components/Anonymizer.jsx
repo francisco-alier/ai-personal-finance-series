@@ -1,6 +1,73 @@
 import React, { useState } from 'react';
 
-export default function Anonymizer() {
+const t = {
+  pt: {
+    tag: 'Artigo 1',
+    title: 'Anonimizador de Extratos',
+    desc: 'Remove informações de identificação pessoal (NIF, IBAN, nomes e marcas locais) do teu extrato bancário com segurança local total antes de partilhares os teus dados com qualquer Inteligência Artificial.',
+    disclaimerTitle: 'Aviso de Responsabilidade (Utilização por Conta e Risco):',
+    disclaimerDesc: 'O uso desta ferramenta local é feito por tua inteira conta e risco. Não nos responsabilizamos por falhas de privacidade. Verifica sempre se todos os dados sensíveis (especialmente nomes próprios específicos e locais) foram totalmente limpos antes de partilhares o texto com qualquer IA externa.',
+    infoTitle: 'Processamento 100% Local:',
+    infoDesc: 'Nenhum dado introduzido sai do teu computador. As regras de substituição são executadas inteiramente no teu navegador através de expressões regulares em JavaScript.',
+    copiedText: 'Texto copiado com sucesso! Pronto para colar no teu assistente de IA.',
+    panelInputTitle: 'Extrato Original (Texto)',
+    placeholderInput: 'Cola aqui os movimentos do teu extrato bancário (ex: CGD, ActivoBank, BCP, Revolut)...',
+    charText: 'caracteres',
+    btnLoad: 'Carregar Exemplo',
+    btnClear: 'Limpar',
+    panelOutputTitle: 'Extrato Anonimizado',
+    placeholderOutput: "O extrato limpo aparecerá aqui após clicar em 'Anonimizar Dados'...",
+    btnAnonymize: 'Anonimizar Dados',
+    btnCopy: 'Copiar Resultado',
+    statsTitle: 'Elementos Removidos com Sucesso:',
+    nextStepsTitle: 'O que acontece a seguir?',
+    nextStepsDesc: 'Depois de copiares os dados limpos, podes enviá-los de forma totalmente segura para o ChatGPT, Claude ou Gemini. Pede para categorizar as linhas, sugerir um orçamento baseado em percentagens (ex: regra 50/30/20) ou encontrar padrões de gastos que possas cortar.',
+    btnFormatText: 'Texto',
+    btnFormatTable: 'Tabela',
+    statIbans: 'IBANs',
+    statNifs: 'NIFs',
+    statNames: 'Nomes Próprios',
+    statBanks: 'Nomes de Bancos',
+    statPlaces: 'Lojas/Marcas',
+    statPhones: 'Telefones',
+    statEmails: 'Emails'
+  },
+  en: {
+    tag: 'Article 1',
+    title: 'Statement Anonymizer',
+    desc: 'Remove personally identifiable information (NIF, IBAN, names, and local brands) from your bank statement with total local security before sharing your data with any Artificial Intelligence.',
+    disclaimerTitle: 'Disclaimer (Use at Your Own Risk):',
+    disclaimerDesc: 'The use of this local tool is done at your own risk. We are not liable for any privacy issues. Always verify that all sensitive data (especially specific names and locations) are fully masked in the output before sharing the text with any external AI.',
+    infoTitle: '100% Local Processing:',
+    infoDesc: 'No data entered leaves your computer. The substitution rules run entirely in your browser using JavaScript regular expressions.',
+    copiedText: 'Text copied successfully! Ready to paste into your AI assistant.',
+    panelInputTitle: 'Original Statement (Text)',
+    placeholderInput: 'Paste your bank statement transactions here (e.g. CGD, ActivoBank, BCP, Revolut)...',
+    charText: 'characters',
+    btnLoad: 'Load Sample',
+    btnClear: 'Clear',
+    panelOutputTitle: 'Anonymized Statement',
+    placeholderOutput: "The clean statement will appear here after clicking 'Anonymize Data'...",
+    btnAnonymize: 'Anonymize Data',
+    btnCopy: 'Copy Result',
+    statsTitle: 'Elements Successfully Removed:',
+    nextStepsTitle: 'What happens next?',
+    nextStepsDesc: 'After copying the clean data, you can send it fully securely to ChatGPT, Claude, or Gemini. Ask them to categorize the rows, suggest a percentage-based budget (e.g. 50/30/20 rule), or find spending patterns that you can cut.',
+    btnFormatText: 'Text',
+    btnFormatTable: 'Table',
+    statIbans: 'IBANs',
+    statNifs: 'NIFs',
+    statNames: 'First Names',
+    statBanks: 'Bank Names',
+    statPlaces: 'Stores/Brands',
+    statPhones: 'Phones',
+    statEmails: 'Emails'
+  }
+};
+
+export default function Anonymizer({ lang = 'pt' }) {
+  const content = t[lang] || t.pt;
+
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [copied, setCopied] = useState(false);
@@ -62,16 +129,15 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
     };
 
     // 1. IBAN Scrubbing (PT50 + 21 digits, standard PT IBAN)
-    // Matches PT followed by 2 digits and groups of numbers (supports spaces/hyphens)
     const ibanRegex = /\bPT\d{2}(?:[\s-]?\d{4}){5}[\s-]?\d{1,2}\b/gi;
-    tempText = tempText.replace(ibanRegex, (match) => {
+    tempText = tempText.replace(ibanRegex, () => {
       counts.ibans++;
       return '[IBAN_ANONIMIZADO]';
     });
 
     // 2. Email Scrubbing
     const emailRegex = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/g;
-    tempText = tempText.replace(emailRegex, (match) => {
+    tempText = tempText.replace(emailRegex, () => {
       counts.emails++;
       return '[EMAIL_ANONIMIZADO]';
     });
@@ -79,7 +145,6 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
     // 3. Phone Number Scrubbing (PT 9-digit patterns starting with 9 or 2, plus optional +351)
     const phoneRegex = /(?:\+351|00351)?[\s-]?\b[29]\d{2}[\s-]?\d{3}[\s-]?\d{3}\b/g;
     tempText = tempText.replace(phoneRegex, (match) => {
-      // Avoid matching dates (e.g. 2026-05-15) or standard values
       if (match.length === 4 || match.includes('/') || match.includes('.')) return match;
       counts.phones++;
       return '[TELEFONE_ANONIMIZADO]';
@@ -95,9 +160,8 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
       'Montepio Geral', 'Montepio', 'Revolut', 'N26',
       'Deutsche Bank', 'Abanca', 'Bankinter', 'Cofidis', 'Cetelem'
     ];
-    // Create escape-safe regex for banks
     const bankRegex = new RegExp(`\\b(?:${bankNames.map(b => b.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|')})\\b`, 'gi');
-    tempText = tempText.replace(bankRegex, (match) => {
+    tempText = tempText.replace(bankRegex, () => {
       counts.banks++;
       return '[BANCO_ANONIMIZADO]';
     });
@@ -113,20 +177,18 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
       'Multibanco'
     ];
     const establishmentRegex = new RegExp(`\\b(?:${establishments.map(e => e.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|')})\\b`, 'gi');
-    tempText = tempText.replace(establishmentRegex, (match) => {
+    tempText = tempText.replace(establishmentRegex, () => {
       counts.places++;
       return '[ESTABELECIMENTO_ANONIMIZADO]';
     });
 
     // 6. Name Prefixes (Structured patterns in statements)
-    // Matches labels like Titular, Beneficiário followed by names
     const namePrefixes = /\b(?:Titular|Beneficiário|Beneficiario|Destinatário|Destinatario|Remetente|Nome|De|Para)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ]{2,20}(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]{1,20}){0,4})\b/gi;
     const transferPrefixes = /\b(?:Trf|Transferência|Transferencia)(?:\s+mb\s?way|\s+mbway|\s+sepa|\s+internacional|\s+imediata|\s+interbancária|\s+interbancaria)?\s+(?:de|para|p\/|a|da|do)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ]{2,20}(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]{1,20}){0,4})\b/gi;
 
     const cleanName = (match, p1) => {
       const trimmedName = p1.trim();
       const lowerName = trimmedName.toLowerCase();
-      // Skip replacing if the name looks like a bank, brand or contains keywords
       if (
         lowerName.includes('banco') || 
         lowerName.includes('extrato') || 
@@ -137,8 +199,8 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
         lowerName.includes('comissão') ||
         lowerName.includes('comissao') ||
         lowerName.includes('imposto') ||
-        lowerName.includes('debito') ||
-        lowerName.includes('credito')
+        lowerName.includes('debit') ||
+        lowerName.includes('credit')
       ) {
         return match;
       }
@@ -189,14 +251,11 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
       return '[NOME_ANONIMIZADO]';
     });
 
-    // Collapse consecutive [NOME_ANONIMIZADO] placeholders into a single one
     tempText = tempText.replace(/\[NOME_ANONIMIZADO\](?:\s+\[NOME_ANONIMIZADO\])+/g, '[NOME_ANONIMIZADO]');
 
-    // 8. NIF Scrubbing (Standalone 9-digit numbers starting with PT NIF digits, after phones)
-    // Matches 9-digit numbers that match PT NIF start range and aren't parts of IBAN/Dates
+    // 8. NIF Scrubbing
     const nifRegex = /\b[1-35-9]\d{8}\b/g;
-    tempText = tempText.replace(nifRegex, (match) => {
-      // Don't replace if it is inside an anonymized tag
+    tempText = tempText.replace(nifRegex, () => {
       counts.nifs++;
       return '[NIF_ANONIMIZADO]';
     });
@@ -212,14 +271,12 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
     const rows = [];
     
     lines.forEach(line => {
-      // Find date (matches DD/MM/YYYY or DD-MM-YYYY or YYYY-MM-DD)
       const dateMatch = line.match(/\b\d{2}[/\-]\d{2}[/\-]\d{4}\b/) || line.match(/\b\d{4}[/\-]\d{2}[/\-]\d{2}\b/);
       if (!dateMatch) return;
       const date = dateMatch[0];
       
       let cleanLine = line.replace(date, '').trim();
       
-      // Find values: look for decimal number patterns with optional sign and currency
       const valueRegex = /([+\-]?\s*\d+[\d\s\.]*,\d{2}(?:\s*(?:EUR|€))?|[+\-]?\s*\d+[\d\s\.]*\.\d{2}(?:\s*(?:EUR|€))?)/gi;
       const values = [];
       let m;
@@ -232,7 +289,6 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
         const value = valObj.text.trim();
         
         let description = cleanLine.substring(0, valObj.index).trim();
-        // Clean description spaces
         description = description.replace(/\s+/g, ' ');
         
         if (description && value) {
@@ -243,7 +299,6 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
 
     if (rows.length === 0) return '';
 
-    // Generate markdown table
     let md = '| Data | Descrição | Valor |\n| --- | --- | --- |\n';
     rows.forEach(row => {
       md += `| ${row.date} | ${row.description} | ${row.value} |\n`;
@@ -276,11 +331,10 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
   return (
     <div className="page-container">
       <div className="page-header">
-        <span className="hero-tag">Artigo 1</span>
-        <h1 className="page-title">Anonimizador de Extratos</h1>
+        <span className="hero-tag">{content.tag}</span>
+        <h1 className="page-title">{content.title}</h1>
         <p className="page-description">
-          Remove informações de identificação pessoal (NIF, IBAN, nomes e marcas locais) do teu extrato bancário
-          com segurança local total antes de partilhares os teus dados com qualquer Inteligência Artificial.
+          {content.desc}
         </p>
       </div>
 
@@ -301,22 +355,21 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
       }}>
         <span style={{ fontSize: '1.3rem', lineHeight: '1' }}>⚠️</span>
         <div>
-          <strong>Aviso de Responsabilidade (Utilização por Conta e Risco):</strong> O uso desta ferramenta local é feito por tua inteira conta e risco. Não nos responsabilizamos por falhas de privacidade. <strong>Verifica sempre</strong> se todos os dados sensíveis (especialmente nomes próprios específicos e locais) foram totalmente limpos antes de partilhares o texto com qualquer IA externa.
+          <strong>{content.disclaimerTitle}</strong> {content.disclaimerDesc}
         </div>
       </div>
 
       <div className="alert-box alert-box-info">
         <span className="alert-box-icon">🔒</span>
         <div>
-          <strong>Processamento 100% Local:</strong> Nenhum dado introduzido sai do teu computador. As regras de substituição 
-          são executadas inteiramente no teu navegador através de expressões regulares em JavaScript.
+          <strong>{content.infoTitle}</strong> {content.infoDesc}
         </div>
       </div>
 
       {copied && (
         <div className="alert-box">
           <span className="alert-box-icon">✅</span>
-          <div>Texto copiado com sucesso! Pronto para colar no teu assistente de IA.</div>
+          <div>{content.copiedText}</div>
         </div>
       )}
 
@@ -327,17 +380,17 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
           <div className="workspace-panel">
             <div className="panel-title">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Extrato Original (Texto)
+              {content.panelInputTitle}
             </div>
             <div className="textarea-container">
               <textarea
                 className="custom-textarea"
-                placeholder="Cola aqui os movimentos do teu extrato bancário (ex: CGD, ActivoBank, BCP, Revolut)..."
+                placeholder={content.placeholderInput}
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
               />
               <span className="char-counter">
-                {inputText.length} caracteres
+                {inputText.length} {content.charText}
               </span>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -346,14 +399,14 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
                 onClick={handleLoadSample}
                 style={{ flexGrow: 1 }}
               >
-                📥 Carregar Exemplo
+                📥 {content.btnLoad}
               </button>
               <button 
                 className="btn btn-secondary" 
                 onClick={handleClear}
                 style={{ flexShrink: 0 }}
               >
-                Limpar
+                {content.btnClear}
               </button>
             </div>
           </div>
@@ -363,7 +416,7 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
             <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Extrato Anonimizado
+                {content.panelOutputTitle}
               </div>
               <div style={{ display: 'flex', gap: '0.25rem', background: 'rgba(255,255,255,0.05)', padding: '2px', borderRadius: '8px' }}>
                 <button 
@@ -381,7 +434,7 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
                     transition: 'all 0.2s'
                   }}
                 >
-                  Texto
+                  {content.btnFormatText}
                 </button>
                 <button 
                   className={`btn-toggle-format ${format === 'table' ? 'active' : ''}`}
@@ -398,19 +451,19 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
                     transition: 'all 0.2s'
                   }}
                 >
-                  Tabela
+                  {content.btnFormatTable}
                 </button>
               </div>
             </div>
             <div className="textarea-container">
               <textarea
                 className="custom-textarea output-area"
-                placeholder="O extrato limpo aparecerá aqui após clicar em 'Anonimizar Dados'..."
+                placeholder={content.placeholderOutput}
                 value={getDisplayedOutput()}
                 readOnly
               />
               <span className="char-counter">
-                {getDisplayedOutput().length} caracteres
+                {getDisplayedOutput().length} {content.charText}
               </span>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -420,7 +473,7 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
                 disabled={!inputText.trim()}
                 style={{ flexGrow: 1 }}
               >
-                ⚡ Anonimizar Dados
+                ⚡ {content.btnAnonymize}
               </button>
               <button 
                 className={`btn btn-success ${!outputText ? 'btn-disabled' : ''}`}
@@ -428,7 +481,7 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
                 disabled={!outputText}
                 style={{ flexGrow: 1 }}
               >
-                📋 Copiar Resultado
+                📋 {content.btnCopy}
               </button>
             </div>
           </div>
@@ -439,27 +492,25 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
         {hasStats && (
           <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
             <h4 className="panel-title" style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
-              🎯 Elementos Removidos com Sucesso:
+              {content.statsTitle}
             </h4>
             <div className="stats-badge-container">
-              {stats.ibans > 0 && <span className="stats-badge">IBANs: <span>{stats.ibans}</span></span>}
-              {stats.nifs > 0 && <span className="stats-badge">NIFs: <span>{stats.nifs}</span></span>}
-              {stats.names > 0 && <span className="stats-badge">Nomes Próprios: <span>{stats.names}</span></span>}
-              {stats.banks > 0 && <span className="stats-badge">Nomes de Bancos: <span>{stats.banks}</span></span>}
-              {stats.places > 0 && <span className="stats-badge">Lojas/Marcas: <span>{stats.places}</span></span>}
-              {stats.phones > 0 && <span className="stats-badge">Telefones: <span>{stats.phones}</span></span>}
-              {stats.emails > 0 && <span className="stats-badge">Emails: <span>{stats.emails}</span></span>}
+              {stats.ibans > 0 && <span className="stats-badge">{content.statIbans}: <span>{stats.ibans}</span></span>}
+              {stats.nifs > 0 && <span className="stats-badge">{content.statNifs}: <span>{stats.nifs}</span></span>}
+              {stats.names > 0 && <span className="stats-badge">{content.statNames}: <span>{stats.names}</span></span>}
+              {stats.banks > 0 && <span className="stats-badge">{content.statBanks}: <span>{stats.banks}</span></span>}
+              {stats.places > 0 && <span className="stats-badge">{content.statPlaces}: <span>{stats.places}</span></span>}
+              {stats.phones > 0 && <span className="stats-badge">{content.statPhones}: <span>{stats.phones}</span></span>}
+              {stats.emails > 0 && <span className="stats-badge">{content.statEmails}: <span>{stats.emails}</span></span>}
             </div>
           </div>
         )}
       </div>
 
       <div className="glass-card">
-        <h3 className="section-title" style={{ fontSize: '1.2rem' }}>O que acontece a seguir?</h3>
+        <h3 className="section-title" style={{ fontSize: '1.2rem' }}>{content.nextStepsTitle}</h3>
         <p className="section-text" style={{ margin: 0 }}>
-          Depois de copiares os dados limpos, podes enviá-los de forma totalmente segura para o ChatGPT, Claude ou Gemini. 
-          Pede para categorizar as linhas, sugerir um orçamento baseado em percentagens (ex: regra 50/30/20) ou encontrar 
-          padrões de gastos que possas cortar.
+          {content.nextStepsDesc}
         </p>
       </div>
     </div>
