@@ -5,6 +5,7 @@ export default function Anonymizer() {
   const [outputText, setOutputText] = useState('');
   const [copied, setCopied] = useState(false);
   const [stats, setStats] = useState(null);
+  const [format, setFormat] = useState('text');
 
   const sampleText = `EXTRATO MENSAL DETALHADO
 Caixa Geral de Depósitos - Conta POUPANÇA ACTIVA
@@ -205,10 +206,64 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
     setCopied(false);
   };
 
+  const convertToMarkdownTable = (text) => {
+    if (!text) return '';
+    const lines = text.split('\n');
+    const rows = [];
+    
+    lines.forEach(line => {
+      // Find date (matches DD/MM/YYYY or DD-MM-YYYY or YYYY-MM-DD)
+      const dateMatch = line.match(/\b\d{2}[/\-]\d{2}[/\-]\d{4}\b/) || line.match(/\b\d{4}[/\-]\d{2}[/\-]\d{2}\b/);
+      if (!dateMatch) return;
+      const date = dateMatch[0];
+      
+      let cleanLine = line.replace(date, '').trim();
+      
+      // Find values: look for decimal number patterns with optional sign and currency
+      const valueRegex = /([+\-]?\s*\d+[\d\s\.]*,\d{2}(?:\s*(?:EUR|€))?|[+\-]?\s*\d+[\d\s\.]*\.\d{2}(?:\s*(?:EUR|€))?)/gi;
+      const values = [];
+      let m;
+      while ((m = valueRegex.exec(cleanLine)) !== null) {
+        values.push({ text: m[0], index: m.index });
+      }
+      
+      if (values.length > 0) {
+        const valObj = values[0];
+        const value = valObj.text.trim();
+        
+        let description = cleanLine.substring(0, valObj.index).trim();
+        // Clean description spaces
+        description = description.replace(/\s+/g, ' ');
+        
+        if (description && value) {
+          rows.push({ date, description, value });
+        }
+      }
+    });
+
+    if (rows.length === 0) return '';
+
+    // Generate markdown table
+    let md = '| Data | Descrição | Valor |\n| --- | --- | --- |\n';
+    rows.forEach(row => {
+      md += `| ${row.date} | ${row.description} | ${row.value} |\n`;
+    });
+    return md;
+  };
+
+  const getDisplayedOutput = () => {
+    if (format === 'table') {
+      const table = convertToMarkdownTable(outputText);
+      if (table) return table;
+    }
+    return outputText;
+  };
+
   const handleCopyToClipboard = async () => {
-    if (!outputText) return;
+    const textToCopy = getDisplayedOutput();
+    if (!textToCopy) return;
     try {
-      await navigator.clipboard.writeText(outputText);
+      await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 3000);
     } catch (err) {
@@ -284,19 +339,57 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
 
           {/* Output Panel */}
           <div className="workspace-panel">
-            <div className="panel-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Extrato Higienizado (Anonimizado)
+            <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Extrato Higienizado (Anonimizado)
+              </div>
+              <div style={{ display: 'flex', gap: '0.25rem', background: 'rgba(255,255,255,0.05)', padding: '2px', borderRadius: '8px' }}>
+                <button 
+                  className={`btn-toggle-format ${format === 'text' ? 'active' : ''}`}
+                  onClick={() => setFormat('text')}
+                  style={{ 
+                    padding: '4px 10px', 
+                    fontSize: '0.75rem', 
+                    border: 'none', 
+                    background: format === 'text' ? 'var(--accent-color)' : 'transparent', 
+                    color: 'white', 
+                    borderRadius: '6px', 
+                    cursor: 'pointer', 
+                    fontWeight: '600',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  Texto
+                </button>
+                <button 
+                  className={`btn-toggle-format ${format === 'table' ? 'active' : ''}`}
+                  onClick={() => setFormat('table')}
+                  style={{ 
+                    padding: '4px 10px', 
+                    fontSize: '0.75rem', 
+                    border: 'none', 
+                    background: format === 'table' ? 'var(--accent-color)' : 'transparent', 
+                    color: 'white', 
+                    borderRadius: '6px', 
+                    cursor: 'pointer', 
+                    fontWeight: '600',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  Tabela
+                </button>
+              </div>
             </div>
             <div className="textarea-container">
               <textarea
                 className="custom-textarea output-area"
                 placeholder="O extrato limpo aparecerá aqui após clicar em 'Anonimizar Dados'..."
-                value={outputText}
+                value={getDisplayedOutput()}
                 readOnly
               />
               <span className="char-counter">
-                {outputText.length} caracteres
+                {getDisplayedOutput().length} caracteres
               </span>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
