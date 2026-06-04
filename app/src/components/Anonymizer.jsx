@@ -119,24 +119,34 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
 
     // 6. Name Prefixes (Structured patterns in statements)
     // Matches labels like Titular, Beneficiário followed by names
-    const namePrefixes = /\b(?:Titular|Beneficiário|Beneficiario|Destinatário|Destinatario|Remetente|Trf de|Trf p\/|Trf para|Transferencia de|Transferência de|Nome|De|Para)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ\s]{2,30})\b/gi;
-    tempText = tempText.replace(namePrefixes, (match, p1) => {
+    const namePrefixes = /\b(?:Titular|Beneficiário|Beneficiario|Destinatário|Destinatario|Remetente|Nome|De|Para)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ]{2,20}(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]{1,20}){0,4})\b/gi;
+    const transferPrefixes = /\b(?:Trf|Transferência|Transferencia)(?:\s+mb\s?way|\s+mbway|\s+sepa|\s+internacional|\s+imediata|\s+interbancária|\s+interbancaria)?\s+(?:de|para|p\/|a|da|do)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ]{2,20}(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]{1,20}){0,4})\b/gi;
+
+    const cleanName = (match, p1) => {
       const trimmedName = p1.trim();
-      // Skip replacing if the name looks like a bank, brand or contains keywords
       const lowerName = trimmedName.toLowerCase();
+      // Skip replacing if the name looks like a bank, brand or contains keywords
       if (
         lowerName.includes('banco') || 
         lowerName.includes('extrato') || 
         lowerName.includes('cartao') || 
         lowerName.includes('cartão') ||
         lowerName.includes('tarifa') || 
-        lowerName.includes('juros')
+        lowerName.includes('juros') ||
+        lowerName.includes('comissão') ||
+        lowerName.includes('comissao') ||
+        lowerName.includes('imposto') ||
+        lowerName.includes('debito') ||
+        lowerName.includes('credito')
       ) {
         return match;
       }
       counts.names++;
       return match.replace(p1, ' [NOME_ANONIMIZADO]');
-    });
+    };
+
+    tempText = tempText.replace(namePrefixes, cleanName);
+    tempText = tempText.replace(transferPrefixes, cleanName);
 
     // 7. Common First & Surnames (Standalone scrubbing)
     const ptFirstNames = [
@@ -147,14 +157,23 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
       'inês', 'filipa', 'rita', 'mariana', 'patricia', 'patrícia', 'margarida',
       'diana', 'leonor', 'madalena', 'francisca', 'alice', 'carolina', 'goncalo',
       'gonçalo', 'duarte', 'tomas', 'tomás', 'rodrigo', 'martim', 'afonso',
-      'santiago', 'gabriel', 'lucas', 'mateus'
+      'santiago', 'gabriel', 'lucas', 'mateus', 'nuno', 'bruno', 'andre', 'andré',
+      'sergio', 'sérgio', 'hugo', 'vitor', 'vítor', 'luisa', 'luísa', 'helena',
+      'sandra', 'vera', 'carla', 'mario', 'mário', 'eduardo', 'filipe', 'marcos',
+      'marco', 'rafael', 'samuel', 'nelson', 'telmo', 'celso', 'helder', 'hélder',
+      'alexandre', 'vânia', 'vania', 'catia', 'cátia', 'liliana', 'tânia', 'tania',
+      'isabel', 'teresa', 'cristina', 'sílvia', 'silvia', 'elisabete', 'marta',
+      'raquel', 'barbara', 'bárbara', 'solange', 'telma'
     ];
     const ptSurnames = [
       'silva', 'santos', 'ferreira', 'pereira', 'oliveira', 'costa', 'rodrigues',
       'gomes', 'pinto', 'marques', 'sousa', 'almeida', 'nunes', 'ribeiro',
       'carvalho', 'teixeira', 'moreira', 'mendes', 'neves', 'correia', 'lopes',
       'cardoso', 'pinheiro', 'cruz', 'dias', 'esteves', 'martins', 'faria',
-      'borges', 'rocha', 'vieira'
+      'borges', 'rocha', 'vieira', 'nave', 'batista', 'baptista', 'machado',
+      'fonseca', 'ramos', 'coelho', 'guerreiro', 'simoes', 'simões', 'tavares',
+      'valente', 'henriques', 'gaspar', 'mota', 'cabral', 'barros', 'freitas',
+      'saraiva', 'cunha'
     ];
 
     const firstNamesPattern = new RegExp(`\\b(?:${ptFirstNames.join('|')})\\b`, 'gi');

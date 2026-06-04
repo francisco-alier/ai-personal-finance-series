@@ -9,17 +9,17 @@ Analisa os dados fornecidos no final deste prompt e apresenta o teu relatório e
 * Menor Transação Individual (€)
 
 ### 2. Top 5 Maiores e Menores Gastos
-* Lista as 5 transações de maior valor (excluindo salários ou transferências de entrada).
-* Lista as 5 transações de menor valor.
+* Cria uma lista com as 5 transações de maior valor (excluindo salários ou transferências de entrada).
+* Cria uma lista com as 5 transações de menor valor.
 
 ### 3. Tabela de Orçamento (Regra 50/30/20)
 Apresenta uma pequena tabela markdown com as colunas: Categoria | Valor Total (€) | Percentagem (%) | Referência Ideal (50/30/20)
 Distribui os gastos pelas categorias: Necessidades Essenciais (50%), Desejos/Lazer (30%) e Poupança/Investimento/Dívida (20%).
 
 ### 4. Diagnóstico e Plano de Ação
-* Identifica potenciais "gastos formiga".
+* Identifica potenciais "gastos micro".
 * Apresenta 3 conselhos práticos e realistas para cortar despesas e aumentar a taxa de poupança em 10% no próximo mês.
 
 ---
 Dados Financeiros Anonimizados para Análise:
-[COLA AQUI OS TEUS DADOS HIGIENIZADOS]
+[COLA AQUI OS TEUS DADOS ANONIMIZADOS]

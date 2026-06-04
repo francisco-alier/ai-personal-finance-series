@@ -54,7 +54,22 @@ def anonymize_text(text):
     bank_pattern = build_regex_pattern(BANK_NAMES)
     text = re.sub(bank_pattern, '[BANCO_OCULTO]', text)
     
-    # 4. Anonymize Names
+    # 4. Anonymize Names based on statement prefixes
+    name_prefixes = r'(?i)\b(?:Titular|Beneficiário|Beneficiario|Destinatário|Destinatario|Remetente|Nome|De|Para)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ]{2,20}(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]{1,20}){0,4})\b'
+    transfer_prefixes = r'(?i)\b(?:Trf|Transferência|Transferencia)(?:\s+mb\s?way|\s+mbway|\s+sepa|\s+internacional|\s+imediata|\s+interbancária|\s+interbancaria)?\s+(?:de|para|p/|a|da|do)[:\s-]+([A-Za-zÀ-ÖØ-öø-ÿ]{2,20}(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]{1,20}){0,4})\b'
+
+    def clean_name_match(match):
+        full_match = match.group(0)
+        name_part = match.group(1)
+        lower_name = name_part.lower()
+        if any(kw in lower_name for kw in ['banco', 'extrato', 'cartao', 'cartão', 'tarifa', 'juros', 'comissão', 'comissao', 'imposto', 'debit', 'credit']):
+            return full_match
+        return full_match.replace(name_part, ' [NOME_OCULTO]')
+
+    text = re.sub(name_prefixes, clean_name_match, text)
+    text = re.sub(transfer_prefixes, clean_name_match, text)
+
+    # 5. Anonymize standalone Names
     name_pattern = build_regex_pattern(COMMON_NAMES)
     text = re.sub(name_pattern, '[NOME_OCULTO]', text)
     

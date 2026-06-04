@@ -41,7 +41,7 @@ De facto, a melhor forma de confirmares a segurança é testá-la tu mesmo:
 
 #### O Teste de Segurança em 4 Passos:
 
-1. **Acede à ferramenta** no link: **[ia.tuaeconomia.pt](https://ia.tuaeconomia.pt)**.
+1. [**Acede à ferramenta**](https://francisco-alier.github.io/ai-personal-finance-series/).
 2. **Desliga a tua ligação à Internet** (desliga o Wi-Fi do computador ou ativa o 'Modo de Voo' no telemóvel).
 3. **Cola as linhas do teu extrato** bancário na caixa de texto.
 4. **Clica em "Limpar Extrato Financeiro"**.
@@ -84,7 +84,7 @@ Apresenta uma pequena tabela markdown com as colunas: Categoria | Valor Total (�
 Distribui os gastos pelas categorias: Necessidades Essenciais (50%), Desejos/Lazer (30%) e Poupança/Investimento/Dívida (20%).
 
 ### 4. Diagnóstico e Plano de Ação
-* Identifica potenciais "gastos formiga".
+* Identifica potenciais "gastos micro".
 * Apresenta 3 conselhos práticos e realistas para cortar despesas e aumentar a taxa de poupança em 10% no próximo mês.
 
 ---
@@ -109,6 +109,12 @@ Atualmente trabalho diariamente com IA desenvolvendo diversas automatizações e
 Ao seguires este método simples, consegues aliar o melhor de dois mundos: utilizas a tecnologia para poupar horas de trabalho manual e encontrar dinheiro esquecido, mantendo a tua privacidade e segurança financeira totalmente invioláveis.
 
 Este foi o primeiro artigo da série sobre IA para Finanças Pessoais. Espero que este guia te tenha sido útil! No próximo mês, trazemos mais dicas práticas para dominares o teu co-piloto financeiro.
+
+---
+
+### ⚠️ Aviso de Responsabilidade (Disclaimer) ⚠️
+
+O uso desta ferramenta e do guia associado é feito por tua inteira conta e risco. Embora o processo de anonimização seja executado localmente no teu navegador para garantir a segurança, não nos responsabilizamos por eventuais falhas, omissões na limpeza de dados, ou qualquer fuga de privacidade após partilhares a informação com serviços externos de Inteligência Artificial. Utiliza com critério e valida sempre o resultado final antes de o submeteres.
 
 ---
 
