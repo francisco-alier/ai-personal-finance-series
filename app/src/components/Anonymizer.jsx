@@ -203,7 +203,7 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
     <div className="page-container">
       <div className="page-header">
         <span className="hero-tag">Módulo 1</span>
-        <h1 className="page-title">Ananimizador de Extratos</h1>
+        <h1 className="page-title">Anonimizador de Extratos</h1>
         <p className="page-description">
           Remove informações de identificação pessoal (NIF, IBAN, nomes e marcas locais) do teu extrato bancário
           com segurança local total antes de partilhares os teus dados com qualquer Inteligência Artificial.
@@ -326,8 +326,7 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
         <p className="section-text" style={{ margin: 0 }}>
           Depois de copiares os dados limpos, podes enviá-los de forma totalmente segura para o ChatGPT, Claude ou Gemini. 
           Pede para categorizar as linhas, sugerir um orçamento baseado em percentagens (ex: regra 50/30/20) ou encontrar 
-          padrões de gastos que possas cortar. Nos próximos meses da nossa série <strong>Co-Piloto Financeiro</strong>, iremos 
-          integrar esta higienização com leitores automáticos de PDF (Mês 2) e categorizadores automáticos com LLM local (Mês 3)!
+          padrões de gastos que possas cortar.
         </p>
       </div>
     </div>
