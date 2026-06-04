@@ -1,7 +1,7 @@
 # Como Pôr a IA a Auditar os Teus Gastos (Sem Dar Cabo da Tua Privacidade)
 
 **Rubrica:** O Meu Co-Piloto Financeiro (Mês 1)  
-**Autor:** [Teu Nome]  
+**Autor:** Francisco Nogueira
 
 ---
 
@@ -27,7 +27,7 @@ A Inteligência Artificial pode ser o teu melhor co-piloto financeiro, mas não 
 
 ### 2. Como anonimizar o extrato bancário
 
-Para resolver este problema, podemos sempre retirar manualmente a informação que não queremos que a IA veja... mas ninguém tem tempo para isso. Por isso,desenvolvi esta solução rápida, gratuita e muito simples que podem experimentar aqui. É uma ferramenta de anonimização que funciona diretamente no teu navegador de internet.
+Para resolver este problema, podemos sempre retirar manualmente a informação que não queremos que a IA veja... mas ninguém tem tempo para isso. Por isso, desenvolvi esta solução rápida, gratuita e muito simples que podem experimentar aqui. É uma ferramenta de anonimização que funciona diretamente no teu navegador de internet.
 
 Sei o que podes estar a pensar: *'Então vens falar-me de privacidade e queres que eu cole o meu extrato num site que não conheço?'*
 
@@ -62,7 +62,7 @@ Quando terminar, basta clicares em **"Copiar Dados Anonimizados"**, voltar a lig
 
 ### 3. Como colocar a IA a trabalhar para ti
 
-Agora que os teus dados estão limpos e seguros, é hora de ativar o teu analista financeiro virtual. Abre o Gemni (ou qualquer outra IA) e cola o prompt que encontras abaixo, substituindo a parte final pelo texto anonimizado que acabaste de copiar:
+Agora que os teus dados estão limpos e seguros, é hora de ativar o teu analista financeiro virtual. Abre o Gemini (ou qualquer outra IA) e cola o prompt que encontras abaixo, substituindo a parte final pelo texto anonimizado que acabaste de copiar:
 
 ```text
 Actua como um consultor financeiro familiar rigoroso e especialista em orçamentos domésticos. 
@@ -114,9 +114,11 @@ Este foi o primeiro artigo da série sobre IA para Finanças Pessoais. Espero qu
 
 ### Glossário
 
-*   **LLM (Modelo de Linguagem de Grande Escala):** É o "cérebro" por trás de ferramentas como o ChatGPT, o Claude ou o Gemini. São algoritmos de Inteligência Artificial treinados com enormes volumes de texto para conseguir compreender, prever e gerar linguagem humana de forma natural.
-*   **PII / Dados Pessoais (Informação Pessoal Identificável):** Refere-se a qualquer dado que possa ser usado para te identificar direta ou indiretamente. No caso do teu extrato bancário, isto inclui o teu nome, NIF, IBAN, morada ou contacto telefónico.
-*   **Processamento Local:** Significa que o código da ferramenta corre integralmente dentro do teu próprio computador ou telemóvel, sem enviar nenhuma informação para a internet. É por isso que o anonimizador funciona mesmo se desligares o Wi-Fi.
+*   **Prompt:** A instrução ou comando de texto que escreves para direcionar a Inteligência Artificial (como o ChatGPT, o Claude ou o Gemini) a realizar uma tarefa específica (neste caso, a auditoria do teu orçamento).
+*   **Processamento Local:** Refere-se a operações de código que correm inteiramente dentro do teu próprio dispositivo (computador ou telemóvel), sem enviar dados para a internet ou para servidores externos. É por isso que o anonimizador funciona sem rede.
+*   **IBAN (Número de Conta Bancária) e NIF (Número de Identificação Fiscal):** Dados pessoais e financeiros identificativos que constam do teu extrato bancário e que necessitam de ser mascarados antes de partilhares o texto com a IA.
+*   **Alucinações (de IA):** O fenómeno em que os modelos de Inteligência Artificial cometem erros de forma convincente, como inventar ou categorizar incorretamente um gasto no extrato.
+*   **Regra 50/30/20:** Um método popular de gestão financeira que divide os teus rendimentos mensais em três categorias: 50% para necessidades essenciais, 30% para lazer (desejos) e 20% para poupança e investimentos.
 
 ---
 
