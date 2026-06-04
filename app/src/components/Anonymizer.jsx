@@ -276,12 +276,33 @@ Para dúvidas, contacte o seu gestor pelo email joao.pinto@cgd.pt ou telefone 91
   return (
     <div className="page-container">
       <div className="page-header">
-        <span className="hero-tag">Módulo 1</span>
+        <span className="hero-tag">Artigo 1</span>
         <h1 className="page-title">Anonimizador de Extratos</h1>
         <p className="page-description">
           Remove informações de identificação pessoal (NIF, IBAN, nomes e marcas locais) do teu extrato bancário
           com segurança local total antes de partilhares os teus dados com qualquer Inteligência Artificial.
         </p>
+      </div>
+
+      {/* Warning Disclaimer Box */}
+      <div className="alert-box" style={{ 
+        background: 'rgba(245, 158, 11, 0.1)', 
+        border: '1px solid rgba(245, 158, 11, 0.25)', 
+        color: '#f59e0b', 
+        marginBottom: '1.5rem',
+        padding: '1.2rem',
+        borderRadius: '16px',
+        display: 'flex',
+        gap: '1rem',
+        alignItems: 'flex-start',
+        textAlign: 'left',
+        fontSize: '0.9rem',
+        lineHeight: '1.5'
+      }}>
+        <span style={{ fontSize: '1.3rem', lineHeight: '1' }}>⚠️</span>
+        <div>
+          <strong>Aviso de Responsabilidade (Utilização por Conta e Risco):</strong> O uso desta ferramenta local é feito por tua inteira conta e risco. Não nos responsabilizamos por falhas de privacidade. <strong>Verifica sempre</strong> se todos os dados sensíveis (especialmente nomes próprios específicos e locais) foram totalmente limpos antes de partilhares o texto com qualquer IA externa.
+        </div>
       </div>
 
       <div className="alert-box alert-box-info">
