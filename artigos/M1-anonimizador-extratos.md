@@ -91,7 +91,7 @@ Distribui os gastos pelas categorias: Necessidades Essenciais (50%), Desejos/Laz
 
 ---
 Dados Financeiros Anonimizados para Análise:
-[COLA AQUI OS TEUS DADOS HIGIENIZADOS]
+[COLA AQUI OS TEUS DADOS ANONIMIZADOS]
 ```
 
 Em poucos segundos, o teu extrato transforma-se num diagnóstico completo, ultrassimplificado e com sugestões de poupança feitas à medida da tua realidade de consumo.
