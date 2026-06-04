@@ -4,7 +4,7 @@ Este repositório serve como a base de código aberto, repositório de prompts e
 
 Serve, para mim, como uma tentativa pessoal de ligar a IA à gestão das minhas finanças pessoais, ao mesmo tempo que partilho informação sobre o funcionamento destes modelos e sobre como a nossa privacidade pode estar exposta.
 
-A ideia será tentar fazer 6 artigos que serão publicados no website [Tua Economia](https://tuaeconomia.pt).
+A ideia será tentar fazer 6 artigos que serão publicados no website [Tua Economia](https://tuaeconomia.com/).
 
 ---
 
@@ -18,9 +18,9 @@ A ideia será tentar fazer 6 artigos que serão publicados no website [Tua Econo
 
 Aqui tens acesso aos artigos completos e aos prompts exatos prontos a copiar e colar para o teu ChatGPT.
 
-| Mês | Crónica | Prompt Exato (Copy-Paste) | Estado |
+| Mês | Artigo | Prompt para testar | Estado |
 | :--- | :--- | :--- | :---: |
-| **M1** | [Como pôr a IA a auditar os teus extratos bancários (com um toque de proteção à tua privacidade)](/artigos/M1-anonimizador-extratos.md) | [Prompt para o artigo](/prompts/M1_auditor_orcamento.txt) | 📝 Rascunho |
+| **M1** | [Como pôr a IA a auditar os teus extratos bancários (com um toque de proteção à tua privacidade)](/artigos/M1-anonimizador-extratos.md) | [Prompt para o artigo](/prompts/M1_auditor_orcamento.txt) | 📝 A escrever |
 | **M2** | *Brevemente* | *Brevemente* | ⏳ Planeado |
 | **M3** | *Brevemente* | *Brevemente* | ⏳ Planeado |
 | **M4** | *Brevemente* | *Brevemente* | ⏳ Planeado |
@@ -30,4 +30,4 @@ Aqui tens acesso aos artigos completos e aos prompts exatos prontos a copiar e c
 ---
 
 
-*Desenvolvido em parceria com a rubrica **O Meu Co-Piloto Financeiro** para [Tua Economia](https://tuaeconomia.pt).*
+*Desenvolvido em parceria com a rubrica **O Meu Co-Piloto Financeiro** para [Tua Economia](https://tuaeconomia.com/).*
