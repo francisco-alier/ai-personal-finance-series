@@ -7,15 +7,15 @@
 
 ### 1. O espião que tens no bolso.
 
-Já sentiste aquela sensação desconfortável de que o teu telemóvel está a ouvir as tuas conversas? Falas com um amigo sobre uma viagem ou um modelo de sapatilhas e, minutos depois, abres as redes sociais e és inundado com anúncios exatamente sobre esse tema. 
+Já sentiste aquela sensação desconfortável de que o teu telemóvel está a ouvir as tuas conversas? Falas com um amigo sobre uma viagem ou de um par de ténis novos e, minutos depois, abres as redes sociais e és inundado com anúncios exatamente sobre esse tema? 
 
 A privacidade na era digital parece uma batalha perdida. Mas se nos anúncios o preço que pagamos é a paciência, nas finanças pessoais a falta de cuidado com os nossos dados pode entregar toda a nossa vida de mão beijada.
 
-**E se pudesses tirar apenas 15 minutos do teu domingo para encontrar 50€, 100€ ou mais no teu extrato bancário?** Sem precisares de preencher folhas de Excel complexas e sem perderes a tarde a fazer contas de cabeça. Atualmente podemos sumarizar a nossa informação bancária de forma simples.
+**E se pudesses tirar apenas 15 minutos do teu domingo para encontrar 50€, 100€ ou mais no teu extrato bancário?** Sem precisares de preencher folhas de Excel complexas e sem perderes a tarde a fazer contas de cabeça. Atualmente podemos sumarizar a nossa informação bancária de forma simples com recurso a ferramentas de Inteligência Artificial (IA).
 
-Podes usar o ChatGPT ou o Claude como um auditor financeiro pessoal e gratuito que analisa os teus gastos em segundos. Eu trabalho com IA todos os dias e apesar de ainda gostar de fazer as minhas análises manuais, a verdade é que a IA, é muito mais rápida e por vezes consegue identificar detalhes que nos escapam. De facto, há pouco tempo um amigo perguntou-me: *'Isto serve mesmo para ajudar uma família real a poupar?'*
+Podes usar o ChatGPT, o Gemini, o Claude ou outra IA como um auditor financeiro pessoal e gratuito que analisa os teus gastos em segundos. Eu trabalho com IA todos os dias e apesar de ainda gostar de fazer as minhas análises manuais, a verdade é que a IA é muito mais rápida e por vezes consegue identificar detalhes que nos escapam. De facto, há pouco tempo um amigo perguntou-me: *'Isto serve mesmo para ajudar uma família real a poupar?'*
 
-A minha resposta foi simples: funciona, e muito bem. Mas há um erro crítico que a maioria das pessoas comete: *entregar* a sua vida financeira de mão beijada às grandes tecnológicas.
+A minha resposta foi simples: funciona, e muito bem. Mas há um erro crítico que a maioria das pessoas comete: *entregar* a sua vida financeira às grandes tecnológicas.
 
 O erro crítico: **Descarregares o PDF do extrato da tua conta bancária (Caixa, Millennium, ActivoBank, Santander...) e arrastá-lo diretamente para a janela do ChatGPT.**
 
@@ -60,11 +60,13 @@ Quando terminar, basta clicares em **"Copiar Resultado"** (ou "Copy Result"), vo
 
 **Dica para melhores resultados (Formato Tabela):** No painel de resultados do anonimizador, podes optar por copiar os teus dados em formato de **Tabela** (usando a linguagem *Markdown*). Recomendamos que utilizes esta opção! Fornecer os dados estruturados numa tabela com colunas de `Data | Descrição | Valor` facilita o trabalho de leitura do modelo de IA, reduz drasticamente a probabilidade de erros matemáticos ("alucinações") e melhora a precisão global do diagnóstico financeiro.
 
+**Nota:** A ferramenta nao é infalivel e podem alguns nomes nao ser anonimizados corretamente, pelo que é importante reveres o resultado antes de o copiares.
+
 ---
 
 ### 3. Como colocar a IA a trabalhar para ti
 
-Agora que os teus dados estão limpos e seguros, é hora de ativar o teu analista financeiro virtual. Abre o Gemini (ou qualquer outra IA) e cola o prompt que encontras abaixo, substituindo a parte final pelo texto anonimizado que acabaste de copiar:
+Agora que os teus dados estão limpos e seguros, é hora de ativar o teu analista financeiro virtual. Abre o ChatGPT (ou qualquer outra IA) e cola o prompt que encontras abaixo, substituindo a parte final pelo texto anonimizado que acabaste de copiar:
 
 ```text
 Actua como um consultor financeiro familiar rigoroso e especialista em orçamentos domésticos. 
@@ -94,13 +96,19 @@ Dados Financeiros Anonimizados para Análise:
 [COLA AQUI OS TEUS DADOS HIGIENIZADOS]
 ```
 
-Em poucos segundos, o teu extrato transforma-se num diagnóstico completo, ultrassimplificado e com sugestões de poupança feitas à medida da tua realidade de consumo.
+Em poucos segundos, o teu extrato transforma-se num diagnóstico completo, ultrassimplificado e com sugestões de poupança feitas à medida da tua realidade de consumo. 
+
+Quais as vantagens desta abordagem? Deixo alguns pontos que, a meu haver, sao uma grande mais valida de criar prompts para ajuda financeira:
+
+**1. Versatilidade Total** : As aplicações financeiras normais prendem-te a categorias rígidas e regras pré-definidas. Com um prompt, és tu quem dita as regras. Se hoje queres analisar os teus gastos com base na regra 50/30/20, usas este prompt. Se amanhã quiseres caçar subscrições esquecidas ou focar-te apenas em cortar nos jantares fora, basta mudares uma linha na tua instrução.
+**2. Ação Imediata e Prática** : A grande mais-valia é que ela não se limita a fazer o diagnóstico do passado; ela sugere próximos passos práticos e acionáveis. Em vez de te deixar apenas a olhar para o desvio, dá-te conselhos do que podes fazer no dia seguinte para melhorar a tua saude financeira.
+**3. Customização e Interatividade** : Podes interagir com o teu diagnóstico de forma natural. Se discordares de uma categoria, basta escreveres: "Ajusta o gasto X para Necessidades". Se achares o supermercado muito caro, podes pedir: "Dá-me ideias práticas de planeamento de refeições para poupar nesta categoria".
 
 ---
 
 ### 4. O que a IA pode e não pode fazer - para não te esqueceres
 
-Atualmente trabalho diariamente com IA desenvolvendo diversas automatizações e ferramentas que simplificam a vida de muita gente no dia-a-dia mas devo deixar um aviso importante para que não cries expectativas erradas. A IA é uma ferramenta fantástica, mas não é mágica. Deixo algumas notes para que tomes melhor partido desta:
+Atualmente trabalho diariamente com IA desenvolvendo diversas automatizações e ferramentas que simplificam a vida de muita gente no dia-a-dia mas devo deixar um aviso importante para que não cries expectativas erradas. A IA é uma ferramenta fantástica, mas não é mágica. Deixo algumas notas para que tomes melhor partido desta:
 
 * **Não conhece o teu contexto:** Se a ferramenta de privacidade ocultou o nome de um restaurante de bairro muito específico (como `[RESTAURANTE_LOCAL]`), a IA não saberá se foi um almoço de trabalho (necessidade) ou um jantar de luxo com amigos (lazer). Se vires uma má categorização, basta escreveres na conversa: *'Ajusta o restaurante local para a categoria Lazer'* e ela atualiza o orçamento imediatamente - até um certo ponto, pois por vezes não consegue "entender" o que queremos, por isso é bom revermos os dados sugeridos e corrigirmos o que acharmos necessário.
 
@@ -124,16 +132,8 @@ O uso desta ferramenta e do guia associado é feito por tua inteira conta e risc
 
 *   **Prompt:** A instrução ou comando de texto que escreves para direcionar a Inteligência Artificial (como o ChatGPT, o Claude ou o Gemini) a realizar uma tarefa específica (neste caso, a auditoria do teu orçamento).
 *   **Processamento Local:** Refere-se a operações de código que correm inteiramente dentro do teu próprio dispositivo (computador ou telemóvel), sem enviar dados para a internet ou para servidores externos. É por isso que o anonimizador funciona sem rede.
-*   **IBAN (Número de Conta Bancária) e NIF (Número de Identificação Fiscal):** Dados pessoais e financeiros identificativos que constam do teu extrato bancário e que necessitam de ser mascarados antes de partilhares o texto com a IA.
 *   **Alucinações (de IA):** O fenómeno em que os modelos de Inteligência Artificial cometem erros de forma convincente, como inventar ou categorizar incorretamente um gasto no extrato.
-*   **Regra 50/30/20:** Um método popular de gestão financeira que divide os teus rendimentos mensais em três categorias: 50% para necessidades essenciais, 30% para lazer (desejos) e 20% para poupança e investimentos.
 *   **Markdown:** Uma linguagem de marcação leve com sintaxe de formatação de texto simples. No contexto desta ferramenta, é utilizada para organizar as transações bancárias numa tabela limpa com colunas, o que facilita muito a leitura e interpretação por parte da IA.
 
 ---
 
-### Fontes e Leituras Recomendadas
-
-Se quiseres aprofundar o teu conhecimento sobre privacidade, IA e segurança digital, espreita estas referências úteis:
-
-1.  **[Política de Privacidade da OpenAI](https://openai.com/privacy/)**: Explica detalhadamente como a OpenAI recolhe, utiliza e armazena os dados partilhados nas conversas com o ChatGPT, bem como as opções que os utilizadores têm para desativar o treino dos modelos com o seu histórico.
-2.  **[Diretrizes do Comité Europeu para a Proteção de Dados (CEPD)](https://edpb.europa.eu/)**: Documentos e recomendações oficiais sobre a proteção de dados pessoais (ao abrigo do RGPD) na era da Inteligência Artificial e como podes exercer os teus direitos de privacidade.
